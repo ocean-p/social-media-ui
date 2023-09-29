@@ -1,11 +1,14 @@
 import React from 'react'
-import {ProfileUser} from '../../components'
+import {ProfilePost, ProfileUser} from '../../components'
 
 const ProfilePage = () => {
   return (
-    <div>
+    <div className='px-20'>
       <div>
         <ProfileUser/>
+      </div>
+      <div className='pb-10'>
+        <ProfilePost/>
       </div>
     </div>
   )
