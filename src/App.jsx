@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import Router from './pages/router'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div>
-      <h1 className='text-3xl'>Social Media</h1>
+      <Router/>
     </div>
   )
 }
