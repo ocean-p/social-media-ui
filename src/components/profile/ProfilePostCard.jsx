@@ -11,10 +11,10 @@ const ProfilePostCard = () => {
         <img src={Tzuyu} alt="Tzuyu" className='cursor-pointer object-cover'/>
         <div className='overlay'>
           <div className='overlay-text flex justify-between'>
-            <div>
+            <div className='flex items-center'>
               <AiFillHeart/> <span>10K</span>
             </div>
-            <div>
+            <div className='flex items-center'>
               <FaComment/> <span>5K</span>  
             </div>
           </div>

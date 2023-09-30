@@ -23,7 +23,7 @@ const Sidebar = () => {
           <div className="pt-8">
             <img src={logo} alt="logo" className="w-40" />
           </div>
-          <div className="mt-10">
+          <div className="mt-8">
             {menuIcons.map((item) => (
               <div
                 key={item.title}
