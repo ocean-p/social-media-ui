@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
 import React from 'react'
 import PostImg from '../../assets/tzuyu-4.jpg'
 import UserAvatar from '../../assets/tzuyu-2.png'
