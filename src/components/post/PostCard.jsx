@@ -83,7 +83,7 @@ const PostCard = () => {
         </div>
         <div className='w-full my-2 px-5'>
           <p>10K likes</p>
-          <p className='opacity-50 mt-2 cursor-pointer'>view all 5K comments</p>
+          <p className='font-thin mt-2 cursor-pointer'>view all 5K comments</p>
         </div>
         <div className='border-t w-full'>
           <div className='flex w-full items-center px-5'>

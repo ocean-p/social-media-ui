@@ -1,0 +1,46 @@
+.drag-drop{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+  color: #999;
+  /* border-radius: 5px; */
+  cursor: pointer;
+}
+
+.drag-drop p{
+  /* margin: 0 0 1rem; */
+}
+
+.custom-file-upload{
+  padding: .5rem 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #0095F6;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover{
+  background-color: #006cf6;
+}
+
+input[type='file']{
+  display: none;
+}
+
+.caption-input{
+  width: 100%;
+  margin-top: 8px;
+  outline: none;
+  resize: none;
+  font-size: medium;
+}
+
+.location-input{
+  border: none;
+  outline: none;
+  width: 90%;
+}
+
