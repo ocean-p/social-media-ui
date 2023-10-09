@@ -1,17 +1,25 @@
-import { Box, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormErrorMessage, Input, useToast } from '@chakra-ui/react'
 import Logo from '../../assets/logo.png'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import { signUpAction } from '../store/auth/action'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required!").min(5, 'Username at least 5 characters'),
   password: Yup.string().required("Password is required!").min(5, 'Password at least 5 characters'),
+  name: Yup.string().required("Name is required!").min(5, 'Name at least 5 characters'),
+  email: Yup.string().required("Email is required!").email('Email is invalid format!'),
 })
 
 const Register = () => {
   const initValues = {username: '', password: '', email: '', name: ''}
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {signUp} = useSelector(state => state.auth)
+  const toast = useToast()
 
   const handleNavigate = () => {
     navigate('/signin')
@@ -19,7 +27,21 @@ const Register = () => {
 
   const handleSubmit = (values) => {
     console.log('values: ', values)
+    dispatch(signUpAction(values))
+    actions.setSubmitting(false)
   }
+
+  useEffect(() => {
+    if(signUp){
+      navigate('/signin')
+      toast({
+        title: 'Account created.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  }, [signUp])
 
   return (
     <div>

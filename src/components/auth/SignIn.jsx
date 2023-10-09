@@ -3,6 +3,10 @@ import Logo from '../../assets/logo.png'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { signInAction } from '../store/auth/action'
+import { useEffect } from 'react'
+import { getUserProfile } from '../store/user/action'
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required!").min(5, 'Username at least 5 characters'),
@@ -12,14 +16,33 @@ const validationSchema = Yup.object().shape({
 const SignIn = () => {
   const initValues = {username: '', password: ''}
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {user} = useSelector(state => state.user)
 
   const handleNavigate = () => {
     navigate('/signup')
   }
 
-  const handleSubmit = (values) => {
-    console.log('values: ', values)
+  const handleSubmit = (values, actions) => {
+    console.log(values)
+    dispatch(signInAction(values))
+    actions.setSubmitting(false)
   }
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token')
+    console.log('token', jwtToken)
+    if(jwtToken){
+      dispatch(getUserProfile(jwtToken))
+    }
+  }, [])
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token')
+    if(jwtToken && user){
+      navigate(`/${user.username}`)
+    }
+  }, [user])
 
   return (
     <div>
@@ -64,8 +87,6 @@ const SignIn = () => {
                     </FormControl>
                   )}
                 </Field>
-                {/* <p className='text-center'>Users of our services may have uploaded your contact information to Instagram.</p>
-                <p className='text-center'>By signing up, you agree to our Terms, Privacy Policy and Cookie Policy.</p> */}
                 <Button className='w-full' mt={4} colorScheme='blue' type='submit'
                   isLoading={formikProps.isSubmitting}
                 >
