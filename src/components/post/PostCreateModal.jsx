@@ -5,11 +5,13 @@ import { GrEmoji } from 'react-icons/gr'
 import { GoLocation } from 'react-icons/go'
 import UserAvatar from '../../assets/tzuyu-2.png'
 import './PostCreateModal.css'
+import { useDispatch } from 'react-redux'
 
 const PostCreateModal = ({onClose, isOpen}) => {
   const [isDragOver, setIsDragOver] = useState(false)
   const [file, setFile] = useState()
   const [caption, setCaption] = useState('')
+  const dispatch = useDispatch()
 
   const handleDrop = (e) => {
     e.preventDefault()
@@ -45,6 +47,10 @@ const PostCreateModal = ({onClose, isOpen}) => {
     setCaption(e.target.value)
   }
 
+  const handleCreatePost = () => {
+
+  }
+
   return (
     <div>
       <Modal size={'4xl'} onClose={onClose} isOpen={isOpen} isCentered>
@@ -53,14 +59,16 @@ const PostCreateModal = ({onClose, isOpen}) => {
           <div className='flex justify-between py-1 px-10 items-center'>
             <p>Create New Post</p>
             <Button variant='ghost' size='sm' colorScheme='blue'
-              className=''>
+              className=''
+              onClick={handleCreatePost}
+            >
               Share
             </Button>
           </div>
           <hr />
           <ModalBody>
             <div className='h-[70vh] flex justify-between'>
-              <div className='flex flex-1 justify-center'>
+              <div className='flex flex-[1.2] justify-center'>
                 {!file && <div onDrop={handleDrop} onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave} 
                   className='drag-drop h-full'>
